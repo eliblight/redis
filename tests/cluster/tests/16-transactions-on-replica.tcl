@@ -38,6 +38,5 @@ test "Can MULTI-EXEC transaction of HGET operations from replica" {
     assert {[$replica HGET h a] eq {QUEUED}}
     assert {[$replica HGET h b] eq {QUEUED}}
     assert {[$replica HGET h c] eq {QUEUED}}
-    catch {$replica EXEC} err
-    assert {[string range $err 0 4] eq {MOVED}}
+    assert {[$replica EXEC] eq {1 2 3}}
 } 
